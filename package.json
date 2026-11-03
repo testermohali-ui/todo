@@ -1,0 +1,16 @@
+{
+  "name": "focus-todo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Focus — a MERN todo app with Redux Toolkit and a modern UI",
+  "scripts": {
+    "setup": "bash scripts/setup.sh",
+    "dev": "bash scripts/dev.sh",
+    "start": "bash scripts/start.sh",
+    "mongo": "bash scripts/mongo.sh start",
+    "mongo:stop": "bash scripts/mongo.sh stop",
+    "seed": "bash -c '. scripts/_env.sh && node server/src/seed.js'",
+    "build": "npm --prefix client run build",
+    "test": "npm --prefix server test && npm --prefix client test"
+  }
+}
