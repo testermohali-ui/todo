@@ -3,11 +3,14 @@
 set -u
 . "$(dirname "${BASH_SOURCE[0]}")/_env.sh"
 
-ACTION="${1:-start}"
+ACTION="start"
+if [ $# -gt 0 ]; then ACTION="$1"; fi
+
 DATA_DIR="$ROOT/.data"
 PID_FILE="$DATA_DIR/mongod.pid"
 LOG_FILE="$DATA_DIR/mongod.log"
-PORT="27017"
+PORT="$MONGO_PORT"
+if [ -z "$PORT" ]; then PORT="27017"; fi
 
 is_running() {
   [ -f "$PID_FILE" ] && kill -0 "$(cat "$PID_FILE")" 2>/dev/null
