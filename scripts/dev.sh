@@ -11,11 +11,14 @@ fi
 
 bash "$ROOT/scripts/mongo.sh" start || exit 1
 
+SERVER_PID=""
+CLIENT_PID=""
+
 cleanup() {
   echo ""
-  echo "Stopping dev servers…"
-  [ -n "" ] && kill "$SERVER_PID" 2>/dev/null
-  [ -n "" ] && kill "$CLIENT_PID" 2>/dev/null
+  echo "Stopping dev servers..."
+  [ -n "$SERVER_PID" ] && kill "$SERVER_PID" 2>/dev/null
+  [ -n "$CLIENT_PID" ] && kill "$CLIENT_PID" 2>/dev/null
   wait 2>/dev/null
   exit 0
 }
@@ -30,9 +33,9 @@ echo "Starting web app on http://localhost:5173"
 CLIENT_PID=$!
 
 echo ""
-echo "  App  → http://localhost:5173"
-echo "  API  → http://localhost:5001/api/health"
-echo "  Stop → Ctrl+C"
+echo "  App  -> http://localhost:5173"
+echo "  API  -> http://localhost:5001/api/health"
+echo "  Stop -> Ctrl+C"
 echo ""
 
 wait
